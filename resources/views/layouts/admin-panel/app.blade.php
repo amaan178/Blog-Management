@@ -41,7 +41,27 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class = "nav flex-column">
+                            <li class="nav-item">
+                                <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('categories.index')}}" class="nav-link">Categories</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                @yield('content')
+            </div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
