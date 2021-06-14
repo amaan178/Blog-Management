@@ -7,7 +7,23 @@
     <div class="card">
         <div class="card-header"><h2>Card Title</h2></div>
         <div class="card-body">
-            This is some text within a card body
+            <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories as $category)
+                    <tr>
+                        <td>{{ $category->name }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+            </table>
         </div>
+    </div>
+    <div class="mt-5">
+        {{ $categories->links('vendor.pagination.bootstrap-4') }}
     </div>
 @endsection
