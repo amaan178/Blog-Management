@@ -25,4 +25,4 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 //Application routes
-Route::resource('categories', CategoriesController::class);
+Route::resource('categories', CategoriesController::class)->middleware(['auth']);
