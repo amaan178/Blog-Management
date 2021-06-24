@@ -53,6 +53,9 @@
                             <li class="nav-item">
                                 <a href="{{route('categories.index')}}" class="nav-link">Categories</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('tags.index')}}" class="nav-link">Tags</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
