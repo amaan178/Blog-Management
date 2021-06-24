@@ -15,7 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(2);
+        $categories = Category::paginate(10);
         return view('categories.index', compact('categories'));
     }
 
@@ -42,6 +42,7 @@ class CategoriesController extends Controller
         Category::create([
             'name' => "$request->name"
         ]);
+        session()->flash('success', 'Category created Successfully!');
         //return to index
         return redirect(route('categories.index'));
     }

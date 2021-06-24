@@ -58,6 +58,7 @@
                 </div>
             </div>
             <div class="col-md-8">
+                @include('layouts.partials._message')
                 @yield('content')
             </div>
         </div>
