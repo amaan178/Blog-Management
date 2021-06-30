@@ -9,8 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>Pen it | Admin Panel</title>
+    @yield('page-level-styles')
+        <title>Pen it | Admin Panel</title>
 </head>
 
 <body>
@@ -55,6 +55,9 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('tags.index')}}" class="nav-link">Tags</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('posts.index')}}" class="nav-link">Posts</a>
                             </li>
                         </ul>
                     </div>
