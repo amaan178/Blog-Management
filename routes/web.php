@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,4 @@ require __DIR__.'/auth.php';
 //Application routes
 Route::resource('categories', CategoriesController::class)->middleware(['auth']);
 Route::resource('tags', TagsController::class)->middleware(['auth']);
+Route::resource('posts', PostController::class)->middleware(['auth']);
