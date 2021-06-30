@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="d-flex justify-content-end mb-3">
-    <a href="{{route('categories.create')}}" class="btn btn-outline-primary">Add Post</a>
+    <a href="{{route('posts.create')}}" class="btn btn-outline-primary">Add Post</a>
 </div>
 <div class="card">
     <div class="card-header">
