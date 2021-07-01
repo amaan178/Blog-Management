@@ -25,7 +25,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12 mb50">
                 <h4 class="blog-title"><a href="{{route('blogs.show', $post->id)}}">{{ $post->title }}</a></h4>
                 <div class="blog-three-attrib">
-                    <span class="icon-calendar"></span>Dec 15 2019 |
+                    <span class="icon-calendar"></span>{{ $post->published_at->diffForHumans() }} |
                     <span class=" icon-pencil"></span><a href="#">{{ $post->author->name }}</a>
                 </div>
                 <img src={{ asset("$post->image_path") }} class="img-responsive" alt="image blog">

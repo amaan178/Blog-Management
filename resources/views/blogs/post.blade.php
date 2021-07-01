@@ -19,7 +19,7 @@
     <div class="blog-three-mini">
         <h2 class="color-dark"><a href="#">{{ $post->title }}</a></h2>
         <div class="blog-three-attrib">
-            <div><i class="fa fa-calendar"></i>Dec 15 2015</div> |
+            <div><i class="fa fa-calendar"></i>{{ $post->published_at->diffForHumans() }}</div> |
             <div><i class="fa fa-pencil"></i><a href="#">{{ $post->author->name }}</a></div> |
             <div><i class="fa fa-comment-o"></i><a href="#">90 Comments</a></div> |
             <div><a href="#"><i class="fa fa-thumbs-o-up"></i></a>150 Likes</div> |
