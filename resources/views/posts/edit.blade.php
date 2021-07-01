@@ -81,12 +81,14 @@
                         <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-
                 <div class="form-group">
                     <label for="published_at">Published At</label>
-                    <input type="text" published_at="published_at" id="published_at"
-                        class="form-control @error('published_at') is-invalid @enderror"
-                        value="{{ old('published_at', $post->published_at) }}" placeholder="Enter post published_at">
+                    <input type="text"
+                    value="{{ old('published_at', $post->published_at) }}"
+                    class="form-control"
+                    name="published_at"
+                    placeholder="Enter post published_at"
+                    id="published_at">
                     @error('published_at')
                         <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
                     @enderror
