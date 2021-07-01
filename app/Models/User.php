@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Thomaswelton\LaravelGravatar\Facades\Gravatar;
+
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
+    const ADMIN = 'admin';
+    const AUTHOR = 'author';
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -40,4 +43,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ADMIN;
+    }
+
+    public function getGravatarImageAttribute(): string
+    {
+        return Gravatar::src($this->email, 80);
+    }
 }
