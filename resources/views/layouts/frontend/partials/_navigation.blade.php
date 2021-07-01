@@ -15,8 +15,17 @@
         <div class="navbar-collapse collapse navbar-main-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="index.html" data-toggle="dropdown" class="dropdown-toggle color-light">Home </a>
+                    <a href="{{route('blogs.home')}}" class="color-light">Home </a>
                 </li>
+                @if(auth()->check())
+                    <li>
+                        <a href="{{route('dashboard')}}"  class="color-light">Dashboard </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{route('login')}}"  class="color-light">Login </a>
+                    </li>
+                @endif
             </ul>
 
         </div>
