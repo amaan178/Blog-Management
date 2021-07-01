@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,17 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 //Application routes
-Route::resource('categories', CategoriesController::class)->middleware(['auth']);
-Route::resource('tags', TagsController::class)->middleware(['auth']);
-Route::resource('posts', PostController::class)->middleware(['auth']);
+
+Route::middleware(['auth'])->group(function(){
+    Route::resource('categories', CategoriesController::class);
+    Route::resource('tags', TagsController::class);
+    Route::delete('posts/trash/{post}', [PostController::class, 'trash'])->name('posts.trash');
+    Route::get('posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
+    Route::put('posts/restore/{post}', [PostController::class, 'restore'])->name('posts.restore');
+    Route::resource('posts', PostController::class);
+
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    Route::put('/users/{user}/make-admin', [UsersController::class, 'makeAdmin'])->name('users.make-admin');
+    Route::put('/users/{user}/revoke-admin', [UsersController::class, 'revokeAdmin'])->name('users.revoke-admin');
+});
+
