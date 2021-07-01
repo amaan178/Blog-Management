@@ -22,8 +22,14 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Amaan',
+            'name' => 'Amaan Jambura',
             'email' => 'amaanjambura@studylink.com',
+            'password' => Hash::make('abcd1234')
+        ]);
+
+        User::create([
+            'name' => 'Devesh Ahuja',
+            'email' => 'deveshahuja12@gmail.com',
             'password' => Hash::make('abcd1234')
         ]);
     }
