@@ -29,7 +29,7 @@
                     <td>
                         <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">Edit</a>
                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                    data-target="#deleteModal" onclick="displayModal({{ $post->id }})">Delete
+                                    data-target="#deleteModal" onclick="displayModal({{ $post->id }})">Trash Blog
                         </button>
                     <td>
                 </tr>
@@ -63,7 +63,7 @@
 @section('page-level-scripts')
     <script>
         function displayModal(postId) {
-            var url = "/posts/" + postId;
+            var url = "/posts/trash/" + postId;
             $("#deletePost").attr('action', url);
         }
     </script>
