@@ -9,9 +9,16 @@
             <div class="pr25 pl25 clearfix">
                 <form action="#">
                     <div class="blog-sidebar-form-search">
-                        <input type="text" name="search" class="" placeholder="e.g. Javascript">
-                        <button type="submit" name="submit" class="pull-right"><i
-                                class="fa fa-search"></i></button>
+                        <form action="{{route('blogs.home')}}" method = "GET">
+                            <input type="text"
+                                name="search"
+                                value="{{request('search')}}"
+                                class=""
+                                placeholder="e.g. Javascript">
+                            <button type="submit" name="submit" class="pull-right"><i
+                                class="fa fa-search"></i>
+                            </button>
+                        </form>
                     </div>
                 </form>
 
