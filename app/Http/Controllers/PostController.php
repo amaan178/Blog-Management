@@ -53,7 +53,6 @@ class PostController extends Controller
             'image' => $image,
             'published_at' => $request->published_at,
         ]);
-
         $post->tags()->attach($request->tags);
         session()->flash('success','Post created successfully!');
         return redirect(route('posts.index'));
@@ -117,6 +116,19 @@ class PostController extends Controller
         $post->forceDelete();
         session()->flash('success', 'Post deleted successfully!');
         return redirect(route('posts.trashed'));
+    }
+
+    public function drafts()
+    {
+        $drafts = Post::drafted()->paginate(3);
+        return view('posts.drafts', ['posts' => $drafts]);
+    }
+
+    public function publishDraft(Post $post)
+    {
+        $post->update(['published_at' => now()]);
+        session()->flash('success', 'Post published successfully!');
+        return redirect(route('posts.index'));
     }
 
     public function trashed()
