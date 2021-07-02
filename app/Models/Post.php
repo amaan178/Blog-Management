@@ -52,4 +52,9 @@ class Post extends Model
     {
         return $query->where('published_at', '<=', now());
     }
+
+    public function scopeDrafted($query)
+    {
+        return $query->where('published_at', '>', now());
+    }
 }
