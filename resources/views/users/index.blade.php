@@ -42,23 +42,6 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="modal fade" id = "deleteModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="" id="deletePost" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <div class="modal-body">
-                            Are you sure you want to delete?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-outline-danger">Delete Post</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <div class="mt-5">
