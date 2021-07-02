@@ -55,6 +55,7 @@ class Post extends Model
 
     public function scopeDrafted($query)
     {
-        return $query->where('published_at', '>', now());
+        return $query->where('published_at', '>', now())
+            ->orWhere('published_at', '=', NULL);
     }
 }
