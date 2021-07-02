@@ -11,7 +11,17 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest('published_at')->published()->simplePaginate(3);
+        // $search = request('search');
+        // if(! $search) {
+        //     $posts = Post::latest('published_at')->published()->simplePaginate(4);
+        // } else {
+        //     $posts = Post::where('title', 'like', '%$search%')
+        // }
+
+        $posts = Post::search()
+            ->latest('published_at')
+            ->published()
+            ->simplePaginate(2);
         $tags = Tag::all();
         $categories = Category::all();
         return view('blogs.index', compact(['posts', 'tags', 'categories']));
