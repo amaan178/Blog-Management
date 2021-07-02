@@ -31,9 +31,11 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth'])->group(function(){
     Route::resource('categories', CategoriesController::class);
     Route::resource('tags', TagsController::class);
+    Route::get('posts/drafts', [PostController::class, 'drafts'])->name('posts.drafts');
+    Route::put('posts/drafts/{post}/publish', [PostController::class, 'publishDraft'])->name('posts.publish-draft');
+    Route::put('posts/restore/{post}', [PostController::class, 'restore'])->name('posts.restore');
     Route::delete('posts/trash/{post}', [PostController::class, 'trash'])->name('posts.trash');
     Route::get('posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
-    Route::put('posts/restore/{post}', [PostController::class, 'restore'])->name('posts.restore');
     Route::resource('posts', PostController::class);
 
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
