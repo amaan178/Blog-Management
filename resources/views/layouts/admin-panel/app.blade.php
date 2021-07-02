@@ -64,6 +64,9 @@
                                 <a href="{{route('posts.index')}}" class="nav-link">Posts</a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{route('posts.drafts')}}" class="nav-link">Drafts</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('posts.trashed')}}" class="nav-link">Trashed Posts</a>
                             </li>
                             <hr>
