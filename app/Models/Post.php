@@ -58,4 +58,13 @@ class Post extends Model
         return $query->where('published_at', '>', now())
             ->orWhere('published_at', '=', NULL);
     }
+
+    public function scopeSearch($query)
+    {
+        $search = request('search');
+        if($search) {
+            return $query->where('title', 'like', "%$search%");
+        }
+        return $query;
+    }
 }
