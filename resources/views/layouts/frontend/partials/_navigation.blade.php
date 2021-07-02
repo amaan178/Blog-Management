@@ -25,6 +25,9 @@
                     <li>
                         <a href="{{route('login')}}"  class="color-light">Login </a>
                     </li>
+                    <li>
+                        <a href="{{route('register')}}"  class="color-light">Sign Up </a>
+                    </li>
                 @endif
             </ul>
 
