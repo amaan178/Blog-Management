@@ -20,13 +20,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index'])->name('blogs.home');
 Route::get('/blogs/{post}', [FrontendController::class,'show'])->name('blogs.show');
+Route::get('blogs/category/{category}', [FrontendController::class, 'category'])->name('blogs.category');
+Route::get('blogs/tags/{tag}', [FrontendController::class, 'tag'])->name('blogs.tag');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
-//Application routes
+// Application routes
+// NOTE: have used raw url instead of categories.destroy
 
 Route::middleware(['auth'])->group(function(){
     Route::resource('categories', CategoriesController::class);
