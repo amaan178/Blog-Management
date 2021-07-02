@@ -29,7 +29,7 @@
                     <td>
                         <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">Edit</a>
                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                    data-target="#deleteModal" onclick="displayModal({{ $post->id }})">Trash Blog
+                                    data-target="#deleteModal" onclick="displayModal({{ $post->id }})">Trash Post
                         </button>
                     <td>
                 </tr>
@@ -53,6 +53,23 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id = "draftModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="" id="draftPost" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="modal-body">
+                            Are you sure you want to draft this Post?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-danger">Draft Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="mt-5">
@@ -65,6 +82,13 @@
         function displayModal(postId) {
             var url = "/posts/trash/" + postId;
             $("#deletePost").attr('action', url);
+        }
+    </script>
+
+    <script>
+        function displayDraftModal(postId) {
+            var url = "/posts/draft/" + postId;
+            $("#draftPost").attr('action', url);
         }
     </script>
 @endsection
