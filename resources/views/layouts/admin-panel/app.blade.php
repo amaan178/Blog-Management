@@ -43,7 +43,7 @@
 
     <div class="container py-5">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <ul class = "nav flex-column">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @include('layouts.partials._message')
                 @yield('content')
             </div>
