@@ -9,7 +9,7 @@
             <div class="pr25 pl25 clearfix">
                 <form action="#">
                     <div class="blog-sidebar-form-search">
-                        <form action="{{route('blogs.home')}}" method = "GET">
+                        <form action="" method = "GET">
                             <input type="text"
                                 name="search"
                                 value="{{request('search')}}"

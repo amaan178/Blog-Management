@@ -40,7 +40,9 @@ Route::middleware(['auth'])->group(function(){
     Route::delete('posts/trash/{post}', [PostController::class, 'trash'])->name('posts.trash');
     Route::get('posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
     Route::resource('posts', PostController::class);
+});
 
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
     Route::put('/users/{user}/make-admin', [UsersController::class, 'makeAdmin'])->name('users.make-admin');
     Route::put('/users/{user}/revoke-admin', [UsersController::class, 'revokeAdmin'])->name('users.revoke-admin');

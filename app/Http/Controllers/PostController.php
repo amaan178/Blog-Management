@@ -16,10 +16,20 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware(['validateAuthor'])->only('edit', 'update', 'destroy', 'trash');
+        $this->middleware(['verifyCategory', 'verifyTag'])->only('create', 'store');
+    }
     public function index()
     {
-        $posts = Post::published()->paginate(3);
-        return view('posts.index', compact('posts'));
+        if (auth()->user()->isAdmin()) {
+            $posts = Post::paginate(10);
+        } else {
+            $posts = Post::where('user_id', auth()->id())->paginate(10); //to do: using scope
+        }
+
+        return view('posts.index', compact(['posts']));
     }
 
     /**
