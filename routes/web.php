@@ -43,8 +43,9 @@ Route::middleware(['auth'])->group(function(){
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::put('/posts/approve/{post}', [PostController::class, 'approvePost'])->name('posts.approve-post');
+    Route::put('/posts/disapprove/{post}', [PostController::class, 'disapprovePost'])->name('posts.disapprove-post');
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
     Route::put('/users/{user}/make-admin', [UsersController::class, 'makeAdmin'])->name('users.make-admin');
     Route::put('/users/{user}/revoke-admin', [UsersController::class, 'revokeAdmin'])->name('users.revoke-admin');
 });
-

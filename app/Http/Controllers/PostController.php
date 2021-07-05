@@ -26,7 +26,7 @@ class PostController extends Controller
         if (auth()->user()->isAdmin()) {
             $posts = Post::paginate(10);
         } else {
-            $posts = Post::where('user_id', auth()->id())->paginate(10); //to do: using scope
+            $posts = Post::published()->where('user_id', auth()->id())->paginate(10); //to do: using scope
         }
 
         return view('posts.index', compact(['posts']));
@@ -159,6 +159,20 @@ class PostController extends Controller
         $trashedPost = Post::onlyTrashed()->findOrFail($id);
         $trashedPost->restore();
         session()->flash('success', 'Post restore successfully!');
+        return redirect(route('posts.index'));
+    }
+
+    public function approvePost(Post $post)
+    {
+        $post->update(['approval' => 1]);
+        session()->flash('success', ' Post has been approved by the admin!');
+        return redirect(route('posts.index'));
+    }
+
+    public function disapprovePost(Post $post)
+    {
+        $post->update(['approval' => 0]);
+        session()->flash('success', ' Post has been disapproved by the admin!');
         return redirect(route('posts.index'));
     }
 }
