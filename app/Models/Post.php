@@ -53,7 +53,7 @@ class Post extends Model
     public function scopePublished($query)
     {
         return $query->where('published_at', '<=', now())
-                     ->orWhere('approval', '=', 1);
+                     ->where('approval', '=', 1);
     }
 
     public function scopeDrafted($query)
