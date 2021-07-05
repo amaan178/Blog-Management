@@ -94,9 +94,8 @@ class TagsController extends Controller
     {
         if($tag->posts->count() > 0) {
             session()->flash('error', 'This Tag cannot be deleted!');
+            return redirect(route('tags.index'));
         }
-        $tag->delete();
-
         $tag->delete();
         session()->flash('success', 'Tag deleted successfully!');
         return redirect(route('tags.index'));
