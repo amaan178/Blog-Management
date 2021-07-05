@@ -11,6 +11,8 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    const APPROVED = 1;
+    const DISAPPROVED = '0';
     protected $guarded = ['id'];
 
     protected $dates = ['published_at'];
@@ -50,7 +52,8 @@ class Post extends Model
     */
     public function scopePublished($query)
     {
-        return $query->where('published_at', '<=', now());
+        return $query->where('published_at', '<=', now())
+                     ->orWhere('approval', '=', 1);
     }
 
     public function scopeDrafted($query)
@@ -66,5 +69,15 @@ class Post extends Model
             return $query->where('title', 'like', "%$search%");
         }
         return $query;
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('approval', '=', 1);
+    }
+
+    public function isApproved(): bool
+    {
+        return $this->approval == self::APPROVED;
     }
 }
