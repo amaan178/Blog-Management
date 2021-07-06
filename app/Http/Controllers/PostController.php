@@ -195,7 +195,7 @@ class PostController extends Controller
     {
         $post->update(['reason' => $request->exampleRadios]);
         $post->update(['approval' => NULL]);
-        session()->flash('error', "Post has been disapproved! reason: $request->exampleRadios");
+        session()->flash('error', "Post has been disapproved beacuse of it's $request->exampleRadios");
         return redirect(route('posts.approval-requests'));
     }
 
