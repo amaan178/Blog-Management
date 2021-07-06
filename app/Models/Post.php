@@ -11,8 +11,8 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    const APPROVED = 1;
-    const DISAPPROVED = '0';
+    // const APPROVED = now();
+    const DISAPPROVED = NULL;
     protected $guarded = ['id'];
 
     protected $dates = ['published_at'];
@@ -50,10 +50,15 @@ class Post extends Model
     /*
     * Query Scopes
     */
-    public function scopePublished($query)
+    public function scopePublishedAndApproved($query)
     {
         return $query->where('published_at', '<=', now())
-                     ->where('approval', '=', 1);
+                     ->where('approval', '<=', now());
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published_at', '<=', now());
     }
 
     public function scopeDrafted($query)
@@ -73,11 +78,21 @@ class Post extends Model
 
     public function scopeApproved($query)
     {
-        return $query->where('approval', '=', 1);
+        return $query->where('approval', '=', now());
     }
 
-    public function isApproved(): bool
+    public function scopeDisapproved($query)
     {
-        return $this->approval == self::APPROVED;
+        return $query->where('approval', '=', NULL);
+    }
+
+    public function isDisapproved(): bool
+    {
+        return $this->approval == self::DISAPPROVED;
+    }
+
+    public function scopeRequested($query)
+    {
+        return $query->where('approval', NULL);
     }
 }
