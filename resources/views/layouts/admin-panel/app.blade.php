@@ -53,7 +53,6 @@
                             <li class="nav-item">
                                 <a href="{{route('users.index')}}" class="nav-link">Users</a>
                             </li>
-                            <li cl
                             <li class="nav-item">
                                 <a href="{{route('categories.index')}}" class="nav-link">Categories</a>
                             </li>
@@ -69,6 +68,11 @@
                             <li class="nav-item">
                                 <a href="{{route('posts.trashed')}}" class="nav-link">Trashed Posts</a>
                             </li>
+                            @if (auth()->user()->isAdmin())
+                                <li class="nav-item">
+                                    <a href="{{route('posts.approval-requests')}}" class="nav-link">Disapproved Posts</a>
+                                </li>
+                            @endif
                             <hr>
                             <li class="nav-item">
                                 <a href="{{route('blogs.home')}}" class="nav-link">Visit Home Page</a>
