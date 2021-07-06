@@ -67,6 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => VerifyAdmin::class,
         'validateAuthor' => ValidateAuthorForEditAndDeletePost::class,
-        'verifyCategoriesCount' => VerifyCategoriesCount::class,
+        'verifyCategory' => VerifyCategoriesCount::class,
     ];
 }
