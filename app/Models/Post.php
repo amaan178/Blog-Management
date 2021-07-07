@@ -59,13 +59,10 @@ class Post extends Model
     {
         return $query->where('published_at', '<=', now())
                      ->where('approval', '<=', now());
-<<<<<<< HEAD
     }
     public function scopePublished($query)
     {
         return $query->where('published_at', '<=', now());
-=======
->>>>>>> features/approve-disapprove-comments
     }
 
     public function scopeDrafted($query)

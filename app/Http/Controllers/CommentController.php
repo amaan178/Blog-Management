@@ -26,14 +26,22 @@ class CommentController extends Controller
     public function approveComment(Comment $comment)
     {
         $comment->update(['approved_at' => now()]);
+        $comment->update(['reason' => NULL]);
         session()->flash('success', ' Comment has been approved by the admin!');
         return redirect(route('posts.allComments'));
     }
 
-    public function disapproveComment(Comment $comment)
+    public function disapproveComment(Request $request, Comment $comment)
     {
         $comment->update(['approved_at' => NULL]);
-        session()->flash('error', ' Comment has been disapproved by the admin!');
+        $comment->update(['reason' =>  $request->exampleRadios]);
+        session()->flash('error', " Comment has been disapproved by the admin because of $request->exampleRadios");
         return redirect(route('posts.allComments'));
+    }
+
+    public function reason(Comment $comment)
+    {
+        $comment = Comment::findOrFail($comment->id);
+        return view('posts.comment-reason',compact('comment'));
     }
 }

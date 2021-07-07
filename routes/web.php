@@ -51,6 +51,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('posts/requests/{post}/approve', [PostController::class, 'approveRequest'])->name('posts.approve-request');
     Route::put('posts/requests/{post}/disapprove', [PostController::class, 'disapproveRequest'])->name('posts.disapprove-request');
     Route::put('posts/requests/{post}/reason', [PostController::class, 'disapproveReason'])->name('posts.reason');
+    Route::put('posts/comment/{comment}/reasons' ,[CommentController::class, 'reason'])->name('comment.reason');
     Route::put('/posts/approve/{comment}', [CommentController::class, 'approveComment'])->name('comment.approve-comment');
     Route::put('/posts/disapprove/{comment}', [CommentController::class, 'disapproveComment'])->name('comment.disapprove-comment');
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
