@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagsController;
@@ -39,10 +40,14 @@ Route::middleware(['auth'])->group(function(){
     Route::put('posts/restore/{post}', [PostController::class, 'restore'])->name('posts.restore');
     Route::delete('posts/trash/{post}', [PostController::class, 'trash'])->name('posts.trash');
     Route::get('posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
+    Route::post('posts/{post}/comments', [CommentController::class, 'store'])->name('posts.comment');
+    Route::get('posts/comments', [CommentController::class, 'comment'])->name('posts.allComments');
     Route::resource('posts', PostController::class);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::put('/posts/approve/{comment}', [CommentController::class, 'approveComment'])->name('comment.approve-comment');
+    Route::put('/posts/disapprove/{comment}', [CommentController::class, 'disapproveComment'])->name('comment.disapprove-comment');
     Route::put('/posts/approve/{post}', [PostController::class, 'approvePost'])->name('posts.approve-post');
     Route::put('/posts/disapprove/{post}', [PostController::class, 'disapprovePost'])->name('posts.disapprove-post');
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');

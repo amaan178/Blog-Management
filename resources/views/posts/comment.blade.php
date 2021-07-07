@@ -17,51 +17,42 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Excerpt</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Post Title</th>
+                        <th scope="col">Comments</th>
                         @if(auth()->user()->isAdmin())
                             <th scope="col">Admin Controls</th>
                         @endif
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($posts as $post)
+                    @foreach ($comments as $comment)
                     <tr>
-                        <td><img src="{{ $post->image_path }}" width="120"></td>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->excerpt }}</td>
-                        <td>{{ $post->category->name }}</td>
-                        <td>
-                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#deleteModal" onclick="displayModal({{ $post->id }})">Trash Post
-                            </button>
-                        </td>
+                        <td>{{ $comment->user->name }}</td>
+                        <td>{{ $comment->post->title }}</td>
+                        <td>{{ $comment->comments }}</td>
                         @if(auth()->user()->isAdmin())
                             <td>
-                                @if (!$post->isApproved())
-                                    <form action="{{route('posts.approve-post', $post->id)}}" method="POST">
+                                @if (!($comment->isApproved()))
+                                    <form action="{{route('comment.approve-comment', $comment->id)}}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit" class="btn btn-sm btn-outline-success">
                                             <i class="fas fa-check"></i>
-                                            Approve Post
+                                            Approve Comment
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{route('posts.disapprove-post', $post->id)}}" method="POST">
+                                    <form action="{{route('comment.disapprove-comment', $comment->id)}}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit" class="btn btn-sm btn-outline-danger">
                                             <i class="fas fa-times"></i>
-                                            Disapprove Post
+                                            Disapprove Comment
                                         </button>
                                     </form>
                                 @endif
-                                </td>
+                            </td>
                         @endif
                     </tr>
                     @endforeach
@@ -104,7 +95,7 @@
         </div>
     </div>
     <div class="mt-5">
-        {{ $posts->links('vendor.pagination.bootstrap-4') }}
+        {{ $comments->links('vendor.pagination.bootstrap-4') }}
     </div>
 @endsection
 

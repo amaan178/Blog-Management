@@ -53,7 +53,6 @@
                             <li class="nav-item">
                                 <a href="{{route('users.index')}}" class="nav-link">Users</a>
                             </li>
-                            <li cl
                             <li class="nav-item">
                                 <a href="{{route('categories.index')}}" class="nav-link">Categories</a>
                             </li>
@@ -68,6 +67,9 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('posts.trashed')}}" class="nav-link">Trashed Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('posts.allComments')}}" class="nav-link">Comments</a>
                             </li>
                             <hr>
                             <li class="nav-item">

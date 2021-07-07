@@ -37,6 +37,11 @@ class Post extends Model
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function hasTag(int $tag_id): bool
     {
         return in_array($tag_id, $this->tags->pluck('id')->toArray());
@@ -53,7 +58,7 @@ class Post extends Model
     public function scopePublished($query)
     {
         return $query->where('published_at', '<=', now())
-                     ->where('approval', '=', 1);
+                     ->where('approval', '<=', now());
     }
 
     public function scopeDrafted($query)

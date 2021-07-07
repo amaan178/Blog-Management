@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $this->role === self::ADMIN;
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function getGravatarImageAttribute(): string
     {
         return Gravatar::src($this->email, 80);
