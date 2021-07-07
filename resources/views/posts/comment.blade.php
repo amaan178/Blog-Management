@@ -11,7 +11,7 @@
     </div>
     <div class="card">
         <div class="card-header">
-            <h2>Posts</h2>
+            <h2>Comments</h2>
         </div>
         <div class="card-body">
             <table class="table">
@@ -20,6 +20,7 @@
                         <th scope="col">User Name</th>
                         <th scope="col">Post Title</th>
                         <th scope="col">Comments</th>
+                        <th scope="col">Reason for disapproving</th>
                         @if(auth()->user()->isAdmin())
                             <th scope="col">Admin Controls</th>
                         @endif
@@ -31,6 +32,7 @@
                         <td>{{ $comment->user->name }}</td>
                         <td>{{ $comment->post->title }}</td>
                         <td>{{ $comment->comments }}</td>
+                        <td>{{ $comment->reason }}</td>
                         @if(auth()->user()->isAdmin())
                             <td>
                                 @if (!($comment->isApproved()))
@@ -43,7 +45,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{route('comment.disapprove-comment', $comment->id)}}" method="POST">
+                                    <form action="{{route('comment.reason', $comment->id)}}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit" class="btn btn-sm btn-outline-danger">
