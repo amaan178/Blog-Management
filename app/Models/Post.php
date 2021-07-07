@@ -37,6 +37,11 @@ class Post extends Model
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function hasTag(int $tag_id): bool
     {
         return in_array($tag_id, $this->tags->pluck('id')->toArray());
@@ -54,11 +59,13 @@ class Post extends Model
     {
         return $query->where('published_at', '<=', now())
                      ->where('approval', '<=', now());
+<<<<<<< HEAD
     }
-
     public function scopePublished($query)
     {
         return $query->where('published_at', '<=', now());
+=======
+>>>>>>> features/approve-disapprove-comments
     }
 
     public function scopeDrafted($query)

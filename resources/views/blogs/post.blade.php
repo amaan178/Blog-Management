@@ -51,8 +51,28 @@
             Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
         </p>
     </div>
-
-    <div class="bolg-post-comment-container">
+    <div class="comment-section mt-10">
+        <h4>Display Comments</h4>
+        @foreach($comments as $comment)
+            <div class="display-comment">
+                <strong>{{ $comment->user->name }}</strong>
+                <p>{{ $comment->comments }}</p>
+            </div>
+        @endforeach
+        <hr />
+        <h4>Add comment</h4>
+        <form method="post" action="{{route('posts.comment', $post->id)}}">
+            @csrf
+            <div class="form-group">
+                <input type="text" name="comment_body" class="form-control" />
+                <input type="hidden" name="post_id" value="{{ $post->id }}" />
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-warning" value="Add Comment" />
+            </div>
+        </form>
+    </div>
+    {{-- <div class="bolg-post-comment-container">
         <div id="disqus_thread"></div>
         <script>
             /**
@@ -72,5 +92,5 @@
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+    </div> --}}
 @endsection

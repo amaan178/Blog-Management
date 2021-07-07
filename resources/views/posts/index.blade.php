@@ -29,11 +29,18 @@
                 </thead>
                 <tbody>
                     @foreach ($posts as $post)
-                        <tr>
-                            <td><img src="{{ $post->image_path }}" width="140" alt=""></td>
-                            <td>{{ $post->title }}</td>
-                            <td>{{ $post->excerpt }}</td>
-                            <td>{{ $post->category->name }}</td>
+                    <tr>
+                        <td><img src="{{ $post->image_path }}" width="120"></td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->excerpt }}</td>
+                        <td>{{ $post->category->name }}</td>
+                        <td>
+                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                        data-target="#deleteModal" onclick="displayModal({{ $post->id }})">Trash Post
+                            </button>
+                        </td>
+                        @if(auth()->user()->isAdmin())
                             <td>
                                 <div class="mb-2">
                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">
@@ -63,9 +70,10 @@
                                             Disapprove Post
                                         </button>
                                     </form>
+                                @endif
                                 </td>
-                            @endif
-                        </tr>
+                        @endif
+                    </tr>
                     @endforeach
                 </tbody>
             </table>

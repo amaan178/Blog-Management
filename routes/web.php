@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagsController;
@@ -41,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/posts/requests', [PostController::class, 'requests'])->name('posts.approval-requests');
     Route::put('/posts/drafts/{post}/draft', [PostController::class, 'draftPost'])->name('posts.draft-post');
     Route::put('posts/drafts/{post}/publish', [PostController::class, 'publishDraft'])->name('posts.publish-draft');
+    Route::post('posts/{post}/comments', [CommentController::class, 'store'])->name('posts.comment');
+    Route::get('posts/comments', [CommentController::class, 'comment'])->name('posts.allComments');
     Route::resource('posts', PostController::class);
 });
 
@@ -48,6 +51,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('posts/requests/{post}/approve', [PostController::class, 'approveRequest'])->name('posts.approve-request');
     Route::put('posts/requests/{post}/disapprove', [PostController::class, 'disapproveRequest'])->name('posts.disapprove-request');
     Route::put('posts/requests/{post}/reason', [PostController::class, 'disapproveReason'])->name('posts.reason');
+    Route::put('/posts/approve/{comment}', [CommentController::class, 'approveComment'])->name('comment.approve-comment');
+    Route::put('/posts/disapprove/{comment}', [CommentController::class, 'disapproveComment'])->name('comment.disapprove-comment');
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
     Route::put('/users/{user}/make-admin', [UsersController::class, 'makeAdmin'])->name('users.make-admin');
     Route::put('/users/{user}/revoke-admin', [UsersController::class, 'revokeAdmin'])->name('users.revoke-admin');

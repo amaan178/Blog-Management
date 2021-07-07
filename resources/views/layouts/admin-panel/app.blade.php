@@ -73,6 +73,9 @@
                                     <a href="{{route('posts.approval-requests')}}" class="nav-link">Disapproved Posts</a>
                                 </li>
                             @endif
+                            <li class="nav-item">
+                                <a href="{{route('posts.allComments')}}" class="nav-link">Comments</a>
+                            </li>
                             <hr>
                             <li class="nav-item">
                                 <a href="{{route('blogs.home')}}" class="nav-link">Visit Home Page</a>
