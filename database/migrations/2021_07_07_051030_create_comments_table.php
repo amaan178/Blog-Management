@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_id');
             $table->string('comments');
+            $table->string('reason')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
 
