@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->string('image');
             $table->timestamp('published_at')->nullable();
             $table->string('approval')->default(0);
+            $table->integer('views_count')->default(0);
             $table->softDeletes();
             $table->timestamps();
 

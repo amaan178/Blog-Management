@@ -31,6 +31,7 @@ class FrontendController extends Controller
 
     public function show(Post $post)
     {
+        $post->increment('views_count');
         $tags = Tag::all();
         $categories = Category::all();
         $comments = Comment::approved()->with('user')->get();
