@@ -21,6 +21,7 @@
                         <th scope="col">Title</th>
                         <th scope="col">Excerpt</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Views Count</th>
                         <th scope="col">Actions</th>
                         @if (auth()->user()->isAdmin())
                             <th scope="col">Admin Actions</th>
@@ -34,6 +35,7 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->excerpt }}</td>
                         <td>{{ $post->category->name }}</td>
+                        <td>{{ $post->views_count }}</td>
                         <td>
                             <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">Edit</a>
                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"

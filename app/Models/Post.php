@@ -82,7 +82,7 @@ class Post extends Model
 
     public function scopeApproved($query)
     {
-        return $query->where('approval', '=', now());
+        return $query->where('approval', '<=', now());
     }
 
     public function scopeDisapproved($query)
