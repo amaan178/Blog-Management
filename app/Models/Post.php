@@ -78,7 +78,7 @@ class Post extends Model
 
     public function scopeApproved($query)
     {
-        return $query->where('approval', '=', 1);
+        return $query->where('approval', '<=', now());
     }
 
     public function isApproved(): bool
