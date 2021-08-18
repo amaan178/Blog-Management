@@ -36,12 +36,6 @@
                         <td>{{ $post->excerpt }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>{{ $post->views_count }}</td>
-                        <td>
-                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#deleteModal" onclick="displayModal({{ $post->id }})">Trash Post
-                            </button>
-                        </td>
                         @if(auth()->user()->isAdmin())
                             <td>
                                 <div class="mb-2">
@@ -50,16 +44,16 @@
                                     </a>
                                 </div>
                                 <div class="mb-2">
-                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#deleteModal" onclick="displayModal({{ $post->id }})">Delete
-                                    </button>
-                                </div>
-                                <div class="mb-2">
                                     <form action="{{ route('posts.draft-post', $post->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <button type="submit" class="btn btn-sm btn-outline-warning">Draft</button>
+                                        <button type="submit" class="btn btn-sm btn-success">Draft</button>
                                     </form>
+                                </div>
+                                <div class="mb-2">
+                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                        data-target="#deleteModal" onclick="displayModal({{ $post->id }})">Delete
+                                    </button>
                                 </div>
                             </td>
                             @if (auth()->user()->isAdmin())
