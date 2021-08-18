@@ -15,7 +15,7 @@ class FrontendController extends Controller
         $posts = Post::search()
             ->latest('published_at')
             ->publishedAndApproved()
-            ->simplePaginate(3);
+            ->simplePaginate(2);
         $tags = Tag::all();
         $categories = Category::all();
         return view('blogs.index', compact(['posts', 'tags', 'categories']));
