@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/color/pasific.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/icon/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/icon/et-line-font.css') }}">
-
+    @yield('page-level-styles')
     <!-- Load JS
     HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
     WARNING: Respond.js doesn't work if you view the page via file://
@@ -107,7 +107,7 @@
     <script src="{{ asset('frontend/assets/js/main/jquery.sticky.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main/main.js') }}"></script>
-
+    @yield('page-level-scripts')
 </body>
 
 </html>
