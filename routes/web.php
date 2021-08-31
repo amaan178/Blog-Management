@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('posts/drafts/{post}/publish', [PostController::class, 'publishDraft'])->name('posts.publish-draft');
     Route::post('posts/{post}/comments', [CommentController::class, 'store'])->name('posts.comment');
     Route::get('posts/comments', [CommentController::class, 'comment'])->name('posts.allComments');
+    Route::post('posts/{post}/comments/{comment}/replies', [CommentController::class, 'storeReply'])->name('posts.comments.replies');
     Route::resource('posts', PostController::class);
 });
 

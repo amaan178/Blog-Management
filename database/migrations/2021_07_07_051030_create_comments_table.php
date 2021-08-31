@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_id');
             $table->string('comments');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('reason')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
@@ -30,6 +31,11 @@ class CreateCommentsTable extends Migration
             $table->foreign('post_id')
                   ->references('id')
                   ->on('posts')
+                  ->onDelete('cascade');
+
+            $table->foreign('parent_id')
+                  ->references('id')
+                  ->on('comments')
                   ->onDelete('cascade');
         });
     }

@@ -99,4 +99,10 @@ class Post extends Model
     {
         return $query->where('approval', NULL);
     }
+
+    public function getParentComments()
+    {
+        $comments = Comment::where('parent_id', NULL)->get();
+        return $comments;
+    }
 }

@@ -23,6 +23,17 @@ class CommentController extends Controller
         return view('posts.comment', ['comments' => $comment]);
     }
 
+    public function storeReply(Request $request,  $post,  $comment)
+    {
+        Comment::create([
+            'user_id' => auth()->user()->id,
+            'post_id' => $post,
+            'parent_id' => $comment,
+            'comments' => $request->comment_body,
+        ]);
+        return redirect(route('blogs.show', $post));
+    }
+
     public function approveComment(Comment $comment)
     {
         $comment->update(['approved_at' => now()]);

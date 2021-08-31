@@ -53,18 +53,10 @@
     </div>
     <div class="comment-section mt-10">
         <h4>Display Comments</h4>
-        @foreach($post->comments as $comment)
-            @if ($comment->isApproved())
-                <div class="display-comment mt20">
-                    <img src="{{ $comment->user->gravatar_image }}" alt="image" width="25px" class="img-circle">
-                    <span class="ml5"><strong>{{ $comment->user->name }}</strong></span>
-                    <p class="pl20">{{ $comment->comments }}</p>
-                </div>
-            @endif
-        @endforeach
+        @include('blogs.partials._comment',['comments'=>$post->getParentComments(), 'post' => $post])
         <hr>
         <h4>Add comment</h4>
-        <form method="post" action="{{route('posts.comment', $post->id)}}">
+        <form method="post" action="{{ route('posts.comment', $post->id) }}">
             @csrf
             <div class="form-group">
                 <input type="text" name="comment_body" class="form-control" />
